@@ -1,0 +1,10 @@
+  - platform: template
+    sensors:
+      eg_esszimmer_fenster_zu:
+        value_template: "{{ is_state('binary_sensor.eg_esszimmer_fenster_zu_invertiert', 'off') }}"
+        friendly_name: "EG Esszimmer Fenster zu"
+        device_class: window
+      eg_esszimmer_aussentur_zu:
+        value_template: "{{ is_state('binary_sensor.eg_esszimmer_aussentur_zu_invertiert', 'off') }}"
+        friendly_name: "EG Esszimmer Aussentür zu"
+        device_class: door

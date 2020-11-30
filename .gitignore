@@ -1,0 +1,13 @@
+.cloud/
+custom_components/
+.deps/
+image/
+.storage/
+.tts/
+www/
+*.log
+.HA_VERSION
+secrets.yaml
+home-assistant_v2.db
+known_devices.yaml
+themes/

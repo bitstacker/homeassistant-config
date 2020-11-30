@@ -1,0 +1,106 @@
+---
+default_config:
+
+frontend:
+  themes: !include_dir_merge_named themes
+
+logger:
+  default: info
+  logs:
+    homeassistant.components.unifi: debug
+    homeassistant.components.device_tracker.unifi: debug
+        
+homeassistant:
+  name: "Home Sweet Home"
+  elevation: 1
+  latitude: !secret latitude_home
+  longitude: !secret longitude_home
+  unit_system: metric
+  time_zone: Europe/Berlin
+  temperature_unit: C
+  customize:
+    person.fabian:
+      entity_picture: /local/bit_gross.jpg
+      icon: /local/bit_gross.jpg
+    switch.sperre_licht_alle_flure:
+      assumed_state: true
+    switch.sperre_licht_og_badezimmer:
+      assumed_state: true
+
+lovelace:
+  mode: yaml
+
+zone: !include zones.yaml
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+history:
+  exclude:
+    domains:
+      - automation
+      - weblink
+      - updater
+      - timer
+      - device_tracker
+      - zone
+      - sun
+      - alert
+      - notify
+    entities:
+      - binary_sensor.eg_esszimmer_aussentur_zu_invertiert
+      - binary_sensor.eg_esszimmer_fenster_zu_invertiert
+      - binary_sensor.updater
+      - cover.og_sz
+      - sensor.nextsunrise
+      - sensor.nextsunset
+prometheus:
+  namespace: "ha"
+  filter:
+    include_entities:
+      - sensor.eg_flur_prasenzmelder_helligkeit
+      - sensor.eg_flur_prasenzmelder_temperatur
+      - sensor.og_flur_prasenzmelder_helligkeit
+      - sensor.og_flur_prasenzmelder_temperatur
+      - sensor.og_bad_prasenzmelder_helligkeit
+      - sensor.og_bad_prasenzmelder_luftfeuchtigkeit
+      - sensor.og_bad_prasenzmelder_temperatur
+    include_entity_globs:
+      - sensor.heizkessel*
+  component_config_glob:
+    sensor.*helligkeit:
+      override_metric: illuminance
+    sensor.*temperatur:
+      override_metric: temperature
+    sensor.*luftfeuchtigkeit:
+      override_metric: humidity
+    sensor.heizkessel_energieverbrauch_gas*:
+      override_metric: active_energy_kwh_gas
+    sensor.heizkessel_energieverbrauch_strom*:
+      override_metric: active_energy_kwh_power
+
+alarm_control_panel:
+  - platform: manual
+    name: Alarmanlage
+    arming_time: 20
+
+weather:
+  - platform: darksky
+    api_key: !secret darksky_key
+    mode: daily
+    name: Wetter
+
+knx: !include knx.yaml
+
+mqtt:
+  broker: 127.0.0.1
+
+light: !include lights.yaml
+switch: !include switches.yaml
+sensor: !include sensors.yaml
+binary_sensor: !include binary_sensors.yaml
+input_boolean: !include booleans.yaml
+device_tracker: !include device_tracker.yaml
+timer: !include timer.yaml
+notify: !include notify.yaml
+cover: !include covers.yaml

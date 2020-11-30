@@ -1,0 +1,9 @@
+- platform: unifi
+  host: unifi-controller.never-afk.de
+  port: 443
+  username: !secret unifi_user
+  password: !secret unifi_password
+  ssid_filter:
+    - "weserhaus"
+  new_device_defaults:
+    track_new_devices: False

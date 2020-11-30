@@ -1,0 +1,3 @@
+device_tracker.basic:
+  entity_picture: /local/bit_gross.jpg
+  icon: 'false'

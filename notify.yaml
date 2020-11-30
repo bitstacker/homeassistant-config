@@ -1,0 +1,9 @@
+---
+- name: pushbullet
+  platform: pushbullet
+  api_key: !secret pbapikey
+- name: xmpp
+  platform: xmpp
+  sender: !secret xmpp_user
+  password: !secret xmpp_password
+  recipient: !secret xmpp_recipient

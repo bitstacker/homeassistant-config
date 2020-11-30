@@ -1,0 +1,5 @@
+- platform: group
+  name: "OG SZ"
+  entities:
+    - cover.og_sz_balkontur
+    - cover.og_sz_fenster

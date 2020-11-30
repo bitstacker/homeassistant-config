@@ -1,0 +1,188 @@
+title: Home Sweet Home
+views:
+  - badges: []
+    cards:
+      - entities:
+          - entity: person.fabian
+          - entity: input_boolean.party_mode
+            tap_action:
+              action: toggle
+        show_icon: true
+        show_state: true
+        title: Zustände
+        type: glance
+      - entity: weather.wetter
+        name: Lemwerder
+        type: weather-forecast
+      - entities:
+          - entity: sensor.nextsunrise
+          - entity: sensor.nextsunset
+          - entity: sun.sun
+        title: Info
+        type: entities
+      - entity: alarm_control_panel.alarmanlage
+        states:
+          - arm_home
+          - arm_away
+        type: alarm-panel
+      - card:
+          show_header_toggle: false
+          title: Momentan Aktiv
+          type: entities
+        entities:
+          - light.licht_aussen_dachkasten
+          - light.licht_aussen_hausnummer
+          - light.licht_dachboden
+          - light.licht_eg_esszimmer_steinwand
+          - light.licht_eg_esszimmer_terrasse
+          - light.licht_eg_esszimmer_theke
+          - light.licht_eg_flur
+          - light.licht_eg_gaste_wc
+          - light.licht_eg_hwr
+          - light.licht_eg_hwr_fenster
+          - light.licht_eg_windfang
+          - light.licht_eg_wohnzimmer_durchgang
+          - light.licht_eg_wohnzimmer_led_stripe
+          - light.licht_eg_wohnzimmer_sofa
+          - light.licht_og_badezimmer
+          - light.licht_og_flur_wand
+          - light.licht_og_flur_strahler
+          - light.licht_og_schlafzimmer_1
+          - light.licht_og_schlafzimmer_2
+          - light.licht_og_schlafzimmer_3
+          - light.licht_og_arbeitszimmer
+          - light.licht_og_atelier
+        state_filter:
+          - 'on'
+        type: entity-filter
+    path: default_view
+    title: Startseite
+  - badges: []
+    cards:
+      - entities:
+          - entity: light.licht_eg_wohnzimmer_sofa
+            name: Deckenlicht Sofa
+          - entity: light.licht_eg_wohnzimmer_durchgang
+            name: Deckenlicht Mitte
+          - entity: light.licht_eg_wohnzimmer_led_stripe
+            name: LED-Stripe Durchgang
+          - entity: light.wled
+            name: WLED Durchgang
+        title: Wohnzimmer
+        type: entities
+      - entities:
+          - entity: light.licht_eg_esszimmer_theke
+            name: Thekenlicht
+          - entity: light.licht_eg_esszimmer_terrasse
+            name: Strahler Terrassenlicht
+          - entity: light.licht_eg_esszimmer_steinwand
+            name: Strahler Steinwand
+          - entity: binary_sensor.eg_esszimmer_aussentur_zu
+            name: Terrassentür
+          - entity: binary_sensor.eg_esszimmer_fenster_zu
+            name: Fenster
+        title: Esszimmer
+        type: entities
+      - entities:
+          - entity: light.licht_eg_gaste_wc
+            name: Licht
+        title: Gäste-WC
+        type: entities
+      - entities:
+          - entity: light.licht_eg_flur
+            name: Strahler
+          - entity: switch.sperre_licht_alle_flure
+            name: Licht sperren
+          - entity: sensor.eg_flur_prasenzmelder_helligkeit
+            name: Helligkeit
+          - entity: sensor.eg_flur_prasenzmelder_temperatur
+            name: Temperatur
+        title: Flur
+        type: entities
+    path: erdgeschoss
+    title: Erdgeschoss
+  - badges: []
+    cards:
+      - entities:
+          - entity: light.licht_og_schlafzimmer_1
+            name: Strahler Balkontür
+          - entity: light.licht_og_schlafzimmer_3
+            name: Strahler Bett
+          - entity: light.licht_og_schlafzimmer_2
+            name: Deckenlampe
+          - entity: cover.og_sz_fenster
+            name: Rolladen Fenster
+          - entity: cover.og_sz_balkontur
+            name: Rolladen Balkontür
+          - entity: cover.og_sz
+            name: Alle Rolläden
+        title: Schlafzimmer
+        type: entities
+      - entities:
+          - entity: light.licht_og_badezimmer
+            name: Licht
+          - entity: switch.sperre_licht_og_badezimmer
+            name: Licht sperren
+          - entity: sensor.og_bad_prasenzmelder_helligkeit
+            name: Helligkeit
+          - entity: sensor.og_bad_prasenzmelder_luftfeuchtigkeit
+            name: Luftfeuchtigkeit
+          - entity: sensor.og_bad_prasenzmelder_temperatur
+            name: Temperatur
+          - entity: switch.og_bad_lufter
+            name: Lüftung
+          - entity: switch.heizung_zirkulationspumpe
+            name: Zirkulationspumpe
+        show_header_toggle: false
+        title: Badezimmer
+        type: entities
+      - entities:
+          - entity: light.licht_og_flur_wand
+            name: Wandlampe und Strahler
+          - entity: switch.sperre_licht_alle_flure
+            name: Licht sperren
+          - entity: sensor.og_flur_prasenzmelder_helligkeit
+            name: Helligkeit
+          - entity: sensor.og_flur_prasenzmelder_temperatur
+            name: Temperatur
+        show_header_toggle: false
+        title: Flur
+        type: entities
+      - entities:
+          - entity: light.licht_og_arbeitszimmer
+            name: Strahler
+        show_header_toggle: false
+        title: Arbeitszimmer
+        type: entities
+      - entities:
+          - entity: light.licht_og_atelier
+            name: Strahler
+        show_header_toggle: false
+        title: Atelier
+        type: entities
+    path: obergeschoss
+    title: Obergeschoss
+  - badges: []
+    cards:
+      - entities:
+          - entity: light.licht_dachboden
+            name: Licht
+        title: Dachboden
+        type: entities
+    path: dachboden
+    title: Dachboden
+  - badges: []
+    cards: []
+    path: keller
+    title: Keller
+  - badges: []
+    cards:
+      - entities:
+          - entity: light.licht_aussen_hausnummer
+            name: Hausnummer
+          - entity: light.licht_aussen_dachkasten
+            name: Dachkasten Licht
+        title: Außen
+        type: entities
+    path: aussen
+    title: Außen
