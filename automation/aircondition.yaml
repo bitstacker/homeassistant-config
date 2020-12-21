@@ -1,0 +1,33 @@
+  - alias: 'Lüftung - OG Bad: Timer bei Bewegung einschalten'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.og_bad_prasenzmelder_bewegung
+        to: "on"
+    action:
+      service: timer.start
+      data:
+        entity_id:
+          - timer.og_luefter_bad_einschalten
+  - alias: 'Lüftung - OG Bad: Lüfter bei Timer einschalten'
+    trigger:
+      - platform: event
+        event_type: timer.finished
+        event_data:
+          entity_id: timer.og_luefter_bad_einschalten
+    action:
+      service: switch.turn_on
+      data:
+        entity_id:
+          - switch.og_bad_lufter
+  - alias: 'Lüftung: - OG Bad: Lüfter nach 10 min ausschalten'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.og_bad_prasenzmelder_bewegung
+        to: "off"
+        for:
+          minutes: 10
+    action:
+      service: switch.turn_off
+      data:
+        entity_id:
+          - switch.og_bad_lufter

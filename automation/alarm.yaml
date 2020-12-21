@@ -1,0 +1,66 @@
+  - alias: 'Alarmanlage - Alarm (wenn Außer Haus) auslösen'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.og_bad_prasenzmelder_bewegung
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.eg_flur_prasenzmelder_bewegung
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.eg_esszimmer_fenster_zu
+        to: 'off'
+      - platform: state
+        entity_id: binary_sensor.eg_esszimmer_aussentur_zu
+        to: 'off'
+    condition:
+      - condition: state
+        entity_id: alarm_control_panel.alarmanlage
+        state: armed_away
+    action:
+      service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.alarmanlage
+  - alias: 'Alarmanlage - Alarm (wenn zu Hause) auslösen'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.eg_esszimmer_fenster_zu
+        to: 'off'
+      - platform: state
+        entity_id: binary_sensor.eg_esszimmer_aussentur_zu
+        to: 'off'
+    condition:
+      - condition: state
+        entity_id: alarm_control_panel.alarmanlage
+        state: "armed_home"
+    action:
+      service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.alarmanlage
+  - alias: 'Alarmanlage - Alarm melden'
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.alarmanlage
+        to: 'triggered'
+    action:
+      - service: notify.xmpp
+        data:
+          message: "ALARM! Es tut sich was im Haus!"
+  - alias: 'Alarmanlage - Automatisch scharf schalten'
+    trigger:
+      - platform: state
+        entity_id: person.fabian
+        to: 'not_home'
+        for: "00:10:00"
+    action:
+      - service: alarm_control_panel.alarm_arm_away
+        entity_id: alarm_control_panel.alarmanlage
+  - alias: 'Alarmanlage - Automatisch unscharf schalten'
+    trigger:
+      - platform: state
+        entity_id: person.fabian
+        to: 'home'
+    condition:
+      - condition: state
+        entity_id: alarm_control_panel.alarmanlage
+        state: "armed_away"
+    action:
+      - service: alarm_control_panel.alarm_disarm
+        entity_id: alarm_control_panel.alarmanlage

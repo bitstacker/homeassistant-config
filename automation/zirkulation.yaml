@@ -1,0 +1,38 @@
+  - alias: 'Heizung - Zirkulationspumpe an'
+    trigger:
+      - platform: time_pattern
+        minutes: "/5"
+    condition:
+      - condition: or
+        conditions:
+          - condition: time
+            after: '07:00:00'
+            before: '08:00:00'
+          - condition: time
+            after: '19:00:00'
+            before: '21:00:00'
+      - condition: state
+        entity_id: switch.heizung_zirkulationspumpe
+        state: 'off'
+        for:
+          minutes: 15
+    action:
+      service: switch.turn_on
+      data:
+        entity_id:
+          - switch.heizung_zirkulationspumpe
+  - alias: 'Heizung - Zirkulationspumpe aus'
+    trigger:
+      - platform: time_pattern
+        minutes: "/5"
+    condition:
+      condition: state
+      entity_id: switch.heizung_zirkulationspumpe
+      state: 'on'
+      for:
+        minutes: 15
+    action:
+      service: switch.turn_off
+      data:
+        entity_id:
+          - switch.heizung_zirkulationspumpe

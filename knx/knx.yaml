@@ -1,0 +1,13 @@
+---
+tunneling:
+  host: '10.42.0.13'
+  port: 3671
+  local_ip: '10.42.0.3'
+fire_event: true
+fire_event_filter: ["*/*/*"]
+switch: !include switch.yaml
+light: !include light.yaml
+cover: !include cover.yaml
+binary_sensor: !include binary_sensor.yaml
+sensor: !include sensor.yaml
+climate: !include climate.yaml

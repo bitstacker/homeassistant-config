@@ -1,0 +1,10 @@
+  - name: "OG SZ Fenster"
+    move_long_address: '3/0/0'
+    move_short_address: '3/0/1'
+    travelling_time_down: 18
+    travelling_time_up: 18
+  - name: "OG SZ Balkontür"
+    move_long_address: '3/0/2'
+    move_short_address: '3/0/3'
+    travelling_time_down: 25
+    travelling_time_up: 25

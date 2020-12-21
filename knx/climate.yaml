@@ -1,0 +1,12 @@
+  - name: Heizung.Hauptzone
+    temperature_address: "2/1/2"
+    target_temperature_state_address: "1/0/18"
+    operation_mode_address: "1/0/17"
+    operation_mode_state_address: "1/0/17"
+    min_temp: 0
+    max_temp: 28
+    operation_modes:
+      - Auto
+      - Comfort
+      - Standby
+      - Night

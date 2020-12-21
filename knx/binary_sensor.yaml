@@ -1,0 +1,28 @@
+  - name: "EG Flur Präsenzmelder Bewegung"
+    state_address: "2/2/0"
+    device_class: motion
+  - name: "OG Bad Präsenzmelder Bewegung"
+    state_address: "2/2/1"
+    device_class: motion
+  - name: "OG Flur Präsenzmelder Bewegung"
+    state_address: "2/2/2"
+    device_class: motion
+  - name: "EG Esszimmer Fenster zu invertiert"
+    state_address: "1/1/6"
+  - name: "EG Esszimmer Aussentür zu invertiert"
+    state_address: "1/1/7"
+  - name: "Heizkessel Wartungsmodus"
+    state_address: "1/0/0"
+    sync_state: 1
+  - name: "Heizkessel Fehler Wärmeerzeuger"
+    state_address: "1/0/1"
+    sync_state: 1
+  - name: "Heizkessel Systemstatus Standby"
+    state_address: "1/0/3"
+    sync_state: 1
+  - name: "Heizkessel Systemstatus Heizen"
+    state_address: "1/0/4"
+    sync_state: 1
+  - name: "Heizkessel Systemstatus Warmwasser"
+    state_address: "1/0/5"
+    sync_state: 1

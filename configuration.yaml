@@ -27,13 +27,14 @@ homeassistant:
     switch.sperre_licht_og_badezimmer:
       assumed_state: true
 
-lovelace:
-  mode: yaml
-
 zone: !include zones.yaml
 group: !include groups.yaml
-automation: !include automations.yaml
-script: !include scripts.yaml
+automation: !include_dir_merge_list automation/
+
+# Datenbank
+recorder:
+  db_url: "postgresql://@/homeassistant"
+  purge_keep_days: 14
 
 history:
   exclude:
@@ -54,6 +55,7 @@ history:
       - cover.og_sz
       - sensor.nextsunrise
       - sensor.nextsunset
+
 prometheus:
   namespace: "ha"
   filter:
@@ -90,17 +92,24 @@ weather:
     mode: daily
     name: Wetter
 
-knx: !include knx.yaml
+knx: !include knx/knx.yaml
 
 mqtt:
   broker: 127.0.0.1
 
-light: !include lights.yaml
-switch: !include switches.yaml
-sensor: !include sensors.yaml
-binary_sensor: !include binary_sensors.yaml
-input_boolean: !include booleans.yaml
 device_tracker: !include device_tracker.yaml
-timer: !include timer.yaml
-notify: !include notify.yaml
-cover: !include covers.yaml
+
+utility_meter:
+  meter_heating:
+    source: sensor.heizkessel_energieverbrauch_gas_fur_heizung
+    cycle: yearly
+  meter_heating_water:
+    source: sensor.heizkessel_energieverbrauch_gas_fur_warmwasser
+    cycle: yearly
+
+sensor: !include entities/sensor.yaml
+binary_sensor: !include entities/binary_sensor.yaml
+input_boolean: !include entities/boolean.yaml
+timer: !include entities/timer.yaml
+cover: !include entities/cover.yaml
+notify: !include entities/notify.yaml
